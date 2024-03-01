@@ -316,6 +316,7 @@ module.exports.checkPaymentStatus = async(req,res)=>{
         await axios.request(options).then(async function (response) {
             if(response.data.order_status === "PAID"){
                 const data = await generateFinalOrder(userId , response.data)
+                console.log(data.success)
                 if(data.success){
                     res.redirect(`${process.env.ORDER_LINK}/${data.ORDERID}`)
                     return ;
