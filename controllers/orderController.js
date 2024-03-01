@@ -297,10 +297,6 @@ const generateFinalOrder = async (userId,paymentDetails) =>{
 
 module.exports.checkPaymentStatus = async(req,res)=>{
     const {orderid,userId} = req.params
-    console.log(orderid,userId)
-    console.log(process.env.CHECKOUT_LINK)
-    console.log(process.env.CART_LINK)
-    console.log(process.env.ORDER_LINK)
     try {
         const options = {
             method: 'GET',
@@ -316,7 +312,6 @@ module.exports.checkPaymentStatus = async(req,res)=>{
         await axios.request(options).then(async function (response) {
             if(response.data.order_status === "PAID"){
                 const data = await generateFinalOrder(userId , response.data)
-                console.log(data.success)
                 if(data.success){
                     res.redirect(`${process.env.ORDER_LINK}/${data.ORDERID}`)
                     return ;
