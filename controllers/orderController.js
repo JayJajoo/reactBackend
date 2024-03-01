@@ -297,6 +297,10 @@ const generateFinalOrder = async (userId,paymentDetails) =>{
 
 module.exports.checkPaymentStatus = async(req,res)=>{
     const {orderid,userId} = req.params
+    console.log(orderid,userId)
+    console.log(process.env.CHECKOUT_LINK)
+    console.log(process.env.CART_LINK)
+    console.log(process.env.ORDER_LINK)
     try {
         const options = {
             method: 'GET',
@@ -317,16 +321,16 @@ module.exports.checkPaymentStatus = async(req,res)=>{
                     return ;
                 }
                 else{
-                     res.redirect(`${process.env.CHECKOUT_LINK}`)
+                     res.redirect(process.env.CHECKOUT_LINK)
                     return ;
                 }
             } else if(response.data.order_status === "ACTIVE"){
                 const data = await returnStockQuantity(userId)
-                res.redirect(`${process.env.CART_LINK}`)
+                res.redirect(process.env.CART_LINK)
                 return ;
             } else{
                 const data = await returnStockQuantity(userId)
-                 res.redirect(`${process.env.CART_LINK}`)
+                 res.redirect(process.env.CART_LINK)
                  return 
             }
         })
