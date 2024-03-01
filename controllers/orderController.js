@@ -174,8 +174,8 @@ module.exports.getSessionId = async(req,res)=>{
               'accept': 'application/json',
               'content-type': 'application/json',
               'x-api-version': '2023-08-01',
-              'x-client-id': 'TEST10142809740f9b5a3977c5cfe4c590824101',
-              'x-client-secret': 'cfsk_ma_test_7bf45a6eae898dd6361f52b80f2b7aca_d8e8d6dc'
+              'x-client-id': process.env.CASHFREE_APP_ID,
+              'x-client-secret': process.env.CASHFREE_SECRET
             }
           };
           
@@ -303,9 +303,9 @@ module.exports.checkPaymentStatus = async(req,res)=>{
             url: `https://sandbox.cashfree.com/pg/orders/${orderid}`,
             headers: {
                 accept: 'application/json',
-                'x-api-version': '2022-09-01',
-                'x-client-id': process.env.ACCESS_KEY_ID,
-                'x-client-secret': process.env.SECRET_ACCESS_kEY ,
+                'x-api-version': '2022-09-01',              
+                'x-client-id': process.env.CASHFREE_APP_ID,
+                'x-client-secret': process.env.CASHFREE_SECRET
             }
         };
 
