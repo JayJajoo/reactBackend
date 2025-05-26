@@ -19,7 +19,6 @@ app.use(cors({
 }));
 
 app.use(express.json())
-
 app.use("/api/product",productRoutes)
 app.use("/api/auth",authRoutes)
 app.use("/api/cart",cartRoutes)
@@ -28,6 +27,9 @@ app.use("/api/order",orderRoutes)
 app.use("/api/stock",stockRoutes)
 app.use("/api/dashboard",dashboardRoutes)
 
+app.get("/api/health", (req, res) => {
+    res.status(200).json({ status: "OK", message: "Server is healthy!" });
+});
 
 mongoose.connect(process.env.MONGO_URL,{
     useNewUrlParser:true,
